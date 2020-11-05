@@ -1,0 +1,7 @@
+{
+    "cpputestExplorer.testExecutable": "config_parse_tests",
+    "testExplorer.addToEditorContextMenu": true,
+    "files.associations": {
+        "cstdint": "cpp"
+    }
+}

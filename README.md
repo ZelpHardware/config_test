@@ -1,3 +1,32 @@
+tests to write 
+===========================
+- new line at end of buffer
+ - test buffer has capacity for all info. overflow
+ - Test validity of each element in buffer
+ - test system gets updated values set
+	- 	Hardware Modules Aliveness
+	-	RTC Time
+
+
+ ASSUMPTIONS
+ ==========
+-   an RTCStruct should be created and passed off to rtc, an read again successfully.
+- update sleep interval value 
+- parse the Hardware Modules Aliveness slot, convert that  BCD into decimal then update the sensor_measure_cfg_t struct (alive/passive)
+- new line at end of buffer
+
+
+
+
+
+
+https://docs.google.com/document/d/1KL6LwgTaOfas41tFy-UNMxtD9Ohef2-OgsgXNPY2ma8/edit
+https://app.diagrams.net/#G1rxKtixXz13x9voAXRkpAsbWS1XJtZrJm
+
+
+
+
+
 cpputest-starter-project
 ===========================
 
