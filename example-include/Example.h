@@ -4,7 +4,7 @@
 
 
 #define ZELP_SUCCESS     1 
-#define ZELP_FAIL        0
+#define ZELP_BAD_RESPONSE        0
 
 
 #include <stdint.h>

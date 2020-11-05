@@ -19,7 +19,7 @@ TEST_GROUP(Config)
 TEST(Config, check_parser_supplied_string_returns_success)
 {
      // arrange
-    char const *ble_rx_buffer = "abc";
+    char const *ble_rx_buffer = "abc\n";
     // act +  assert
     LONGS_EQUAL(ZELP_SUCCESS, config_parse((char*)ble_rx_buffer));
 }
@@ -34,10 +34,34 @@ TEST(Config, check_parser_supplied_string_returns_success)
      return_val = config_parse(ble_rx_buffer);
 
      // assert
-     LONGS_EQUAL(ZELP_FAIL, return_val);
+     LONGS_EQUAL(ZELP_BAD_RESPONSE, return_val);
  }
 
- TEST(Config, check_for_newline_at_end_of_buffer)
+ TEST(Config, check_for_newline_at_end_of_buffer_passes)
  {
-     //arrange
+    // arrange
+     uint16_t return_val = false;
+     char  ble_rx_buffer[5] = {'t','\n'};
+
+     // act
+     return_val = config_parse(ble_rx_buffer);
+
+     // assert
+     LONGS_EQUAL(ZELP_SUCCESS, return_val);
+     
+ }
+
+ TEST(Config, check_for_newline_at_end_of_buffer_fails)
+ {
+    // arrange
+     uint16_t return_val = true;
+     char  ble_rx_buffer[5] = {'t'};
+     
+
+     // act
+     return_val = config_parse(ble_rx_buffer);
+
+     // assert
+     LONGS_EQUAL(ZELP_BAD_RESPONSE, return_val);
+     
  }
