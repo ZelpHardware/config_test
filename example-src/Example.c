@@ -18,7 +18,8 @@ uint16_t config_parse(char* buffer)
 	// printf("received buffer %c\n",endOfLine);
 	// printf("sizeof(buffer) = %ld sizeof(0) = %ld\n",sizeof(buffer),sizeof(0));
 	// printf("strlen(file_name)-1 %ld\n",strlen(buffer)); 
-	if(strlen(buffer) < 1 || endOfLine != '\n')
+
+	if(endOfLine != '\n' || strlen(buffer) != 27)
 		return ZELP_BAD_RESPONSE;
 	else
 	{

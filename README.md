@@ -1,7 +1,7 @@
 tests to write 
 ===========================
-- new line at end of buffer
- - test buffer has capacity for all info. overflow
++ new line at end of buffer
++ test buffer has capacity for all info. overflow
  - Test validity of each element in buffer
  - test system gets updated values set
 	- 	Hardware Modules Aliveness

@@ -16,14 +16,6 @@ TEST_GROUP(Config)
     }
 };
 
-TEST(Config, check_parser_supplied_string_returns_success)
-{
-     // arrange
-    char const *ble_rx_buffer = "abc\n";
-    // act +  assert
-    LONGS_EQUAL(ZELP_SUCCESS, config_parse((char*)ble_rx_buffer));
-}
-
  TEST(Config, check_buffer_returns_error_for_empty_string)
  {
      // arrange
@@ -41,7 +33,7 @@ TEST(Config, check_parser_supplied_string_returns_success)
  {
     // arrange
      uint16_t return_val = false;
-     char  ble_rx_buffer[5] = {'t','\n'};
+     char  ble_rx_buffer[28] = "$0xDA;12:00:02;15;12:42:01\n";
 
      // act
      return_val = config_parse(ble_rx_buffer);
@@ -55,8 +47,8 @@ TEST(Config, check_parser_supplied_string_returns_success)
  {
     // arrange
      uint16_t return_val = true;
-     char  ble_rx_buffer[5] = {'t'};
-     
+    char  ble_rx_buffer[28] =  "$0xDA;12:00:02;15;12:42:01";
+ 
 
      // act
      return_val = config_parse(ble_rx_buffer);
@@ -65,3 +57,21 @@ TEST(Config, check_parser_supplied_string_returns_success)
      LONGS_EQUAL(ZELP_BAD_RESPONSE, return_val);
      
  }
+
+ TEST(Config, buffer_has_too_long_data)
+ {
+    // arrange
+     uint16_t expected_value = ZELP_BAD_RESPONSE;
+     char const *invalid_config_buffer = "$0xDA;12:00:02;15;12:42:01.\n";
+     
+      //initially set to success to allow it to be changed to opposite
+     uint16_t return_val = ZELP_SUCCESS;
+
+     // act
+     return_val = config_parse((char*)invalid_config_buffer);
+
+     // assert
+     LONGS_EQUAL(expected_value, return_val);
+     
+ }
+
